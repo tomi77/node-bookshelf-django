@@ -1,0 +1,30 @@
+{
+  "name": "bookshelf-django",
+  "version": "1.0.0",
+  "description": "Django models for Bookshelf",
+  "main": "index.coffee",
+  "scripts": {
+    "lint": "coffeelint index.coffee models/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomi77/node-bookshelf-django.git"
+  },
+  "keywords": [
+    "bookshelf",
+    "django"
+  ],
+  "author": "Tomasz Jakub Rup",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomi77/node-bookshelf-django/issues"
+  },
+  "homepage": "https://github.com/tomi77/node-bookshelf-django",
+  "dependencies": {
+    "bookshelf": "^0.10.0",
+    "knex": "^0.11.9"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.15.7"
+  }
+}
