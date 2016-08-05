@@ -1,0 +1,10 @@
+engines:
+  coffeelint:
+    enabled: true
+  fixme:
+    enabled: true
+
+ratings:
+  paths:
+  - "index.coffee"
+  - "models/*.coffee"
