@@ -1,7 +1,8 @@
-Bookshelf = require 'bookshelf'
-
-Bookshelf.plugin 'registry'
-
 module.exports = (bookshelf) ->
-  bookshelf.model 'DjangoSession',
-    tableName: 'django_session'
+  bookshelf.plugin 'registry'
+
+  unless bookshelf.model('DjangoSession')?
+    bookshelf.model 'DjangoSession',
+      tableName: 'django_session'
+
+  bookshelf.model 'DjangoSession'

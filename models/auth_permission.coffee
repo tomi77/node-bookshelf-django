@@ -1,11 +1,12 @@
-Bookshelf = require 'bookshelf'
-
-Bookshelf.plugin 'registry'
-
 module.exports = (bookshelf) ->
-  require('./django_content_type') bookshelf
+  bookshelf.plugin 'registry'
 
-  bookshelf.model 'AuthPermission',
-    tableName: 'auth_permission'
+  unless bookshelf.model('AuthPermission')?
+    require('./django_content_type') bookshelf
 
-    contentType: () -> @belongsTo 'DjangoContentType', 'content_type_id'
+    bookshelf.model 'AuthPermission',
+      tableName: 'auth_permission'
+
+      contentType: () -> @belongsTo 'DjangoContentType', 'content_type_id'
+
+  bookshelf.model 'AuthPermission'

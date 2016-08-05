@@ -1,14 +1,15 @@
-Bookshelf = require 'bookshelf'
-
-Bookshelf.plugin 'registry'
-
 module.exports = (bookshelf) ->
-  require('./auth_permission') bookshelf
-  require('./auth_group') bookshelf
+  bookshelf.plugin 'registry'
 
-  bookshelf.model 'AuthUser',
-    tableName: 'auth_user'
+  unless bookshelf.model('AuthUser')?
+    require('./auth_permission') bookshelf
+    require('./auth_group') bookshelf
 
-    permissions: () -> @belongsToMany 'AuthPermission', 'auth_user_user_permissions', 'user_id', 'permission_id'
+    bookshelf.model 'AuthUser',
+      tableName: 'auth_user'
 
-    groups: () -> @belongsToMany 'AuthGroup', 'auth_user_groups', 'user_id', 'group_id'
+      permissions: () -> @belongsToMany 'AuthPermission', 'auth_user_user_permissions', 'user_id', 'permission_id'
+
+      groups: () -> @belongsToMany 'AuthGroup', 'auth_user_groups', 'user_id', 'group_id'
+
+  bookshelf.model 'AuthUser'
