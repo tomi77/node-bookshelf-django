@@ -9,3 +9,31 @@
 ~~~bash
 npm install bookshelf-django --save
 ~~~
+
+## Usage
+
+Load models to ``registry``
+
+~~~js
+require('bookshelf-django')(bookshelf);
+~~~
+
+or load model/collection
+
+~~~js
+var AuthUser = require('bookshelf-django')(bookshelf).AuthUser;
+~~~
+
+## Available models / collections
+
+``DjangoSession`` / ``DjangoSessions`` - Django session framework
+
+``DjangoSite`` / ``DjangoSites`` - Django site
+
+``DjangoContentType``/ ``DjangoContentTypes`` - Django content type
+
+``AuthPermission`` / ``AuthPermissions`` - Permissions
+
+``AuthGroup`` / ``AuthGroups`` - Groups of permissions
+
+``AuthUser`` / ``AuthUsers`` - Django users
