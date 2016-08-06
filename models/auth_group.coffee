@@ -14,4 +14,4 @@ module.exports = (bookshelf) ->
       model: bookshelf.model 'AuthGroup'
 
   Model: bookshelf.model 'AuthGroup'
-  Collection: bookshelf.model 'AuthGroups'
+  Collection: bookshelf.collection 'AuthGroups'
