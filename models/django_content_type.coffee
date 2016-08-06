@@ -5,4 +5,10 @@ module.exports = (bookshelf) ->
     bookshelf.model 'DjangoContentType',
       tableName: 'django_content_type'
 
-  bookshelf.model 'DjangoContentType'
+  unless bookshelf.collection('DjangoContentTypes')?
+    bookshelf.collection 'DjangoContentTypes',
+      model: bookshelf.model 'DjangoContentType'
+
+  Model: bookshelf.model 'DjangoContentType'
+  Collection: bookshelf.collection 'DjangoContentTypes'
+

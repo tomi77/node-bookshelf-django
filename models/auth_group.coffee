@@ -9,4 +9,9 @@ module.exports = (bookshelf) ->
 
       permissions: () -> @belongsToMany 'AuthPermission', 'auth_group_permissions', 'group_id', 'permission_id'
 
-  bookshelf.model 'AuthGroup'
+  unless bookshelf.collection('AuthGroups')?
+    bookshelf.collection 'AuthGroups',
+      model: bookshelf.model 'AuthGroup'
+
+  Model: bookshelf.model 'AuthGroup'
+  Collection: bookshelf.model 'AuthGroups'

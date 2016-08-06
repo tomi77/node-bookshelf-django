@@ -12,4 +12,9 @@ module.exports = (bookshelf) ->
 
       groups: () -> @belongsToMany 'AuthGroup', 'auth_user_groups', 'user_id', 'group_id'
 
-  bookshelf.model 'AuthUser'
+  unless bookshelf.collection('AuthUsers')?
+    bookshelf.collection 'AuthUsers',
+      model: bookshelf.model 'AuthUser'
+
+  Model: bookshelf.model 'AuthUser'
+  Collection: bookshelf.model 'AuthUsers'

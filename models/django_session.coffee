@@ -5,4 +5,9 @@ module.exports = (bookshelf) ->
     bookshelf.model 'DjangoSession',
       tableName: 'django_session'
 
-  bookshelf.model 'DjangoSession'
+  unless bookshelf.collection('DjangoSessions')?
+    bookshelf.collection 'DjangoSessions',
+      model: bookshelf.model 'DjangoSession'
+
+  Model: bookshelf.model 'DjangoSession'
+  Collection: bookshelf.collection 'DjangoSessions'

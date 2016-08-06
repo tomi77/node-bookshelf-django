@@ -9,4 +9,9 @@ module.exports = (bookshelf) ->
 
       contentType: () -> @belongsTo 'DjangoContentType', 'content_type_id'
 
-  bookshelf.model 'AuthPermission'
+  unless bookshelf.collection('AuthPermissions')?
+    bookshelf.collection 'AuthPermissions',
+      model: bookshelf.model 'AuthPermission'
+
+  Model: bookshelf.model 'AuthPermission'
+  Collection: bookshelf.collection 'AuthPermissions'

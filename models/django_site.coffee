@@ -5,4 +5,9 @@ module.exports = (bookshelf) ->
     bookshelf.model 'DjangoSite',
       tableName: 'django_site'
 
-  bookshelf.model 'DjangoSite'
+  unless bookshelf.collection('DjangoSites')?
+    bookshelf.collection 'DjangoSites',
+      model: bookshelf.model 'DjangoSite'
+
+  Model: bookshelf.model 'DjangoSite'
+  Collection: bookshelf.collection 'DjangoSites'
