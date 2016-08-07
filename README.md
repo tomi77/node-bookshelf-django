@@ -37,3 +37,12 @@ var AuthUser = require('bookshelf-django')(bookshelf).AuthUser;
 ``AuthGroup`` / ``AuthGroups`` - Groups of permissions
 
 ``AuthUser`` / ``AuthUsers`` - Django users
+
+## TODO
+
+* tests
+* add AuthPermission::formatPerm - formatting permissions in Django style (content_type.permission)
+* add AuthPermissions::getPermissions - list of permissions
+* add AuthGroup::getPermissions - list of group permissions
+* add AuthGroups::getPermissions - unique list of permissions in groups
+* add AuthUser::getPermissions - unique list of user permissions
