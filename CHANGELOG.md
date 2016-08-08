@@ -2,7 +2,9 @@
 
 ## master
 
-nothing
+### News
+
+* add schemas
 
 ## 0.1.1
 

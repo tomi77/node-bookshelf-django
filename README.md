@@ -49,4 +49,3 @@ var AuthUser = require('bookshelf-django')(bookshelf).AuthUser;
 * add `django_comments`, `django_comment_flags` tables
 * add `django_flatpage` table
 * add `django_redirect` table
-* add schemas
