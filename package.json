@@ -4,7 +4,7 @@
   "description": "Django models for Bookshelf",
   "main": "index.coffee",
   "scripts": {
-    "lint": "coffeelint index.coffee models/"
+    "lint": "coffeelint index.coffee schemas.coffee models/"
   },
   "repository": {
     "type": "git",
