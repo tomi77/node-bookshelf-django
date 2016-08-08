@@ -7,4 +7,5 @@ engines:
 ratings:
   paths:
   - "index.coffee"
+  - "schemas.coffee"
   - "models/*.coffee"
