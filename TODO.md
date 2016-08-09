@@ -13,3 +13,7 @@
 * add `comments` tables
 * add `flatpage` table
 * add `redirect` table
+
+## Tests
+
+* ~~add schemas~~
