@@ -38,3 +38,7 @@ jspm_packages
 
 # Idea IDE
 .idea
+
+# Auto-generated files
+/models/
+/index.js
