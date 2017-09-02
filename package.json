@@ -2,10 +2,10 @@
   "name": "bookshelf-django",
   "version": "0.1.2",
   "description": "Django models for Bookshelf",
-  "main": "index.coffee",
+  "main": "index.js",
   "scripts": {
     "prepare": "coffee --bare --compile --output . src/",
-    "lint": "coffeelint index.coffee schemas.coffee models/"
+    "lint": "coffeelint src/"
   },
   "repository": {
     "type": "git",
