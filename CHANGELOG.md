@@ -5,10 +5,11 @@
 ### News
 
 * add schemas
+* Move ``bookshelf`` and ``knex`` from `dependencies` to `peerDependencies`
 
 ## 0.1.2
 
-* update dependencies
+* @deps update
 
 ## 0.1.1
 
