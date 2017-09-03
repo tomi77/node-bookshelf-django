@@ -16,4 +16,5 @@
 
 ## Tests
 
-* ~~add schemas~~
+* add migrations
+* add tests

@@ -2,10 +2,10 @@
 
 ## master
 
-### News
-
-* add schemas
-* Move ``bookshelf`` and ``knex`` from `dependencies` to `peerDependencies`
+* Add schemas
+* Move ``bookshelf`` from `dependencies` to `peerDependencies`
+* Remove ``coffee-script`` dependency
+* Remove ``knex`` dependency
 
 ## 0.1.2
 
