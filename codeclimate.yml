@@ -6,5 +6,5 @@ engines:
 
 ratings:
   paths:
-  - "index.coffee"
-  - "models/*.coffee"
+  - "src/index.coffee"
+  - "src/models/*.coffee"
