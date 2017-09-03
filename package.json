@@ -28,7 +28,6 @@
     "coffeelint": "^1.15.7"
   },
   "peerDependencies": {
-    "bookshelf": "^0.10.0",
-    "knex": "^0.12.0"
+    "bookshelf": "^0.10.0"
   }
 }
