@@ -41,5 +41,6 @@ jspm_packages
 
 # Auto-generated files
 /models/
+/migrations/
 /index.js
 package-lock.json
