@@ -16,5 +16,5 @@
 
 ## Tests
 
-* add migrations
+* ~~add migrations~~
 * add tests

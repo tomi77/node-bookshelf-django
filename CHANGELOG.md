@@ -2,7 +2,7 @@
 
 ## master
 
-* Add schemas
+* Add knex migrations
 * Move ``bookshelf`` from `dependencies` to `peerDependencies`
 * Remove ``coffee-script`` dependency
 * Remove ``knex`` dependency
