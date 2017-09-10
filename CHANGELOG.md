@@ -2,6 +2,8 @@
 
 ## master
 
+* Add function that formats permissions in Django style (content_type.permission)
+* Add function that gets list of permissions
 * Add knex migrations
 * Move ``bookshelf`` from `dependencies` to `peerDependencies`
 * Remove ``coffee-script`` dependency
