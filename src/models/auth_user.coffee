@@ -1,20 +1,22 @@
+Promise = require 'bluebird'
+
 module.exports = (bookshelf) ->
   bookshelf.plugin 'registry'
 
-  unless bookshelf.model('AuthUser')?
+  unless bookshelf.model('Django.Auth.User')?
     require('./auth_permission') bookshelf
     require('./auth_group') bookshelf
 
-    bookshelf.model 'AuthUser',
+    bookshelf.model 'Django.Auth.User',
       tableName: 'auth_user'
 
-      permissions: () -> @belongsToMany 'AuthPermission', 'auth_user_user_permissions', 'user_id', 'permission_id'
+      permissions: () -> @belongsToMany 'Django.Auth.Permission', 'auth_user_user_permissions', 'user_id', 'permission_id'
 
-      groups: () -> @belongsToMany 'AuthGroup', 'auth_user_groups', 'user_id', 'group_id'
+      groups: () -> @belongsToMany 'Django.Auth.Group', 'auth_user_groups', 'user_id', 'group_id'
 
-  unless bookshelf.collection('AuthUsers')?
-    bookshelf.collection 'AuthUsers',
-      model: bookshelf.model 'AuthUser'
+  unless bookshelf.collection('Django.Auth.Users')?
+    bookshelf.collection 'Django.Auth.Users',
+      model: bookshelf.model 'Django.Auth.User'
 
-  Model: bookshelf.model 'AuthUser'
-  Collection: bookshelf.model 'AuthUsers'
+  Model: bookshelf.model 'Django.Auth.User'
+  Collection: bookshelf.model 'Django.Auth.Users'

@@ -6,15 +6,17 @@ module.exports = (bookshelf) ->
   require('./models/auth_group') bookshelf
   require('./models/auth_user') bookshelf
 
-  DjangoSession: bookshelf.model 'DjangoSession'
-  DjangoSessions: bookshelf.collection 'DjangoSessions'
-  DjangoSite: bookshelf.model 'DjangoSite'
-  DjangoSites: bookshelf.collection 'DjangoSites'
-  DjangoContentType: bookshelf.model 'DjangoContentType'
-  DjangoContentTypes: bookshelf.collection 'DjangoContentTypes'
-  AuthPermission: bookshelf.model 'AuthPermission'
-  AuthPermissions: bookshelf.collection 'AuthPermissions'
-  AuthGroup: bookshelf.model 'AuthGroup'
-  AuthGroups: bookshelf.collection 'AuthGroups'
-  AuthUser: bookshelf.model 'AuthUser'
-  AuthUsers: bookshelf.collection 'AuthUsers'
+  Session: bookshelf.model 'Django.Session'
+  Sessions: bookshelf.collection 'Django.Sessions'
+  Site: bookshelf.model 'Django.Site'
+  Sites: bookshelf.collection 'Django.Sites'
+  ContentType: bookshelf.model 'Django.ContentType'
+  ContentTypes: bookshelf.collection 'Django.ContentTypes'
+
+  Auth:
+    Permission: bookshelf.model 'Django.Auth.Permission'
+    Permissions: bookshelf.collection 'Django.Auth.Permissions'
+    Group: bookshelf.model 'Django.Auth.Group'
+    Groups: bookshelf.collection 'Django.Auth.Groups'
+    User: bookshelf.model 'Django.Auth.User'
+    Users: bookshelf.collection 'Django.Auth.Users'

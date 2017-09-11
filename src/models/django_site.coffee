@@ -1,13 +1,13 @@
 module.exports = (bookshelf) ->
   bookshelf.plugin 'registry'
 
-  unless bookshelf.model('DjangoSite')?
-    bookshelf.model 'DjangoSite',
+  unless bookshelf.model('Django.Site')?
+    bookshelf.model 'Django.Site',
       tableName: 'django_site'
 
-  unless bookshelf.collection('DjangoSites')?
-    bookshelf.collection 'DjangoSites',
-      model: bookshelf.model 'DjangoSite'
+  unless bookshelf.collection('Django.Sites')?
+    bookshelf.collection 'Django.Sites',
+      model: bookshelf.model 'Django.Site'
 
-  Model: bookshelf.model 'DjangoSite'
-  Collection: bookshelf.collection 'DjangoSites'
+  Model: bookshelf.model 'Django.Site'
+  Collection: bookshelf.collection 'Django.Sites'

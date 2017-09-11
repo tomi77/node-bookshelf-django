@@ -20,24 +20,26 @@ Load models to ``registry``
 
 ~~~js
 require('bookshelf-django')(bookshelf);
+
+var AuthUser = bookshelf.model('Django.Auth.User');
 ~~~
 
 or load model/collection
 
 ~~~js
-var AuthUser = require('bookshelf-django')(bookshelf).AuthUser;
+var AuthUser = require('bookshelf-django')(bookshelf).Auth.User;
 ~~~
 
 ## Available models / collections
 
-``DjangoSession`` / ``DjangoSessions`` - Django session framework
+``Django.Session`` / ``Django.Sessions`` - Django session framework
 
-``DjangoSite`` / ``DjangoSites`` - Django site
+``Django.Site`` / ``Django.Sites`` - Django site
 
-``DjangoContentType``/ ``DjangoContentTypes`` - Django content type
+``Django.ContentType``/ ``Django.ContentTypes`` - Django content type
 
-``AuthPermission`` / ``AuthPermissions`` - Permissions
+``Django.Auth.Permission`` / ``Django.Auth.Permissions`` - Permissions
 
-``AuthGroup`` / ``AuthGroups`` - Groups of permissions
+``Django.Auth.Group`` / ``Django.Auth.Groups`` - Groups of permissions
 
-``AuthUser`` / ``AuthUsers`` - Django users
+``Django.Auth.User`` / ``Django.Auth.Users`` - Django users

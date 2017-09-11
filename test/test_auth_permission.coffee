@@ -12,12 +12,12 @@ assert = require('chai').assert
 
 before () -> knex.migrate.latest directory: 'src/migrations/'
 
-describe 'AuthPermission', () ->
+describe 'Django.Auth.Permission', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_permission/'
 
   describe '#toString', () ->
     it 'should format permission in Django style', () ->
-      AuthPermission = bookshelf.model 'AuthPermission'
+      AuthPermission = bookshelf.model 'Django.Auth.Permission'
 
       AuthPermission.forge id: 1
       .fetch withRelated: 'contentType'
@@ -26,14 +26,14 @@ describe 'AuthPermission', () ->
     return
   return
 
-describe 'AuthPermissions', () ->
+describe 'Django.Auth.Permissions', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_permissions/'
 
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
-      AuthPermissions = bookshelf.collection 'AuthPermissions'
+      AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
 
-      new AuthPermissions()
+      AuthPermissions.forge()
       .fetch()
       .then (permissions) -> permissions.getPermissions()
       .then (permissions) ->

@@ -1,17 +1,17 @@
 module.exports = (bookshelf) ->
   bookshelf.plugin 'registry'
 
-  unless bookshelf.model('AuthGroup')?
+  unless bookshelf.model('Django.Auth.Group')?
     require('./auth_permission') bookshelf
 
-    bookshelf.model 'AuthGroup',
+    bookshelf.model 'Django.Auth.Group',
       tableName: 'auth_group'
 
-      permissions: () -> @belongsToMany 'AuthPermission', 'auth_group_permissions', 'group_id', 'permission_id'
+      permissions: () -> @belongsToMany 'Django.Auth.Permission', 'auth_group_permissions', 'group_id', 'permission_id'
 
-  unless bookshelf.collection('AuthGroups')?
-    bookshelf.collection 'AuthGroups',
-      model: bookshelf.model 'AuthGroup'
+  unless bookshelf.collection('Django.Auth.Groups')?
+    bookshelf.collection 'Django.Auth.Groups',
+      model: bookshelf.model 'Django.Auth.Group'
 
-  Model: bookshelf.model 'AuthGroup'
-  Collection: bookshelf.collection 'AuthGroups'
+  Model: bookshelf.model 'Django.Auth.Group'
+  Collection: bookshelf.collection 'Django.Auth.Groups'
