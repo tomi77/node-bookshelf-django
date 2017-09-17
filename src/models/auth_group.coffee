@@ -7,7 +7,7 @@ module.exports = (bookshelf) ->
     bookshelf.model 'Django.Auth.Group',
       tableName: 'auth_group'
 
-      permissions: () -> @belongsToMany 'Django.Auth.Permission', 'auth_group_permissions', 'group_id', 'permission_id'
+      permissions: () -> @belongsToMany 'Django.Auth.Permissions', 'auth_group_permissions', 'group_id', 'permission_id'
 
   unless bookshelf.collection('Django.Auth.Groups')?
     bookshelf.collection 'Django.Auth.Groups',
