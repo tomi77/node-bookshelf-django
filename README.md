@@ -78,7 +78,19 @@ Django content type collection
 
 Permission model
 
-#### `toString() -> Promise<string>`
+#### `toString() -> string`
+
+Returns string representation of a permission.
+
+~~~js
+AuthPermission.forge({id: 1})
+.fetch({withRelated: 'contentType'})
+.then(function(permission) {
+  console.log(permission.toString())
+})
+~~~
+
+#### `toStringAsync() -> Promise<string>`
 
 Returns `Promise` with string representation of a permission.
 
@@ -86,7 +98,7 @@ Returns `Promise` with string representation of a permission.
 AuthPermission.forge({id: 1})
 .fetch()
 .then(function(permission) {
-  return permission.toString()
+  return permission.toStringAsync()
 }).then(function(permission) {
   console.log(permission)
 })

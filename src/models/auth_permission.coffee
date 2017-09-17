@@ -11,13 +11,14 @@ module.exports = (bookshelf) ->
 
       contentType: () -> @belongsTo 'Django.ContentType', 'content_type_id'
 
-      toString: () ->
+      toString: () -> "#{ @related('contentType').get('app_label') }.#{ @get('codename') }"
+
+      toStringAsync: () ->
         (unless @related('contentType').get('app_label')?
           @load('contentType')
         else
           Promise.resolve @
-        ).then (permission) ->
-          "#{ permission.related('contentType').get('app_label') }.#{ permission.get('codename') }"
+        ).then (permission) -> "#{ permission }"
 
 
   unless bookshelf.collection('Django.Auth.Permissions')?
