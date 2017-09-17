@@ -28,8 +28,16 @@
 
 ## Installation
 
+### NPM
+
 ~~~bash
 npm install bookshelf-django --save
+~~~
+
+### Yarn
+
+~~~bash
+yarn add bookshelf-django
 ~~~
 
 ## Usage
