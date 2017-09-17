@@ -8,6 +8,24 @@
 [![peerDependencies Status](https://david-dm.org/tomi77/node-bookshelf-django/peer-status.svg)](https://david-dm.org/tomi77/node-bookshelf-django?type=peer)
 ![Downloads](https://img.shields.io/npm/dt/bookshelf-django.svg)
 
+## Table of contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Available models / collections](available-models--collections)
+  * [Django.Session](django-session)
+  * [Django.Sessions](django-sessions)
+  * [Django.Site](django-site)
+  * [Django.Sites](django-sites)
+  * [Django.ContentType](django-contenttype)
+  * [Django.ContentTypes](django-contenttypes)
+  * [Django.Auth.Permission](django-auth-permission)
+  * [Django.Auth.Permissions](django-auth-permissions)
+  * [Django.Auth.Group](django-auth-group)
+  * [Django.Auth.Groups](django-auth-groups)
+  * [Django.Auth.User](django-auth-user)
+  * [Django.Auth.Users](django-auth-users)
+
 ## Installation
 
 ~~~bash
@@ -32,14 +50,80 @@ var AuthUser = require('bookshelf-django')(bookshelf).Auth.User;
 
 ## Available models / collections
 
-``Django.Session`` / ``Django.Sessions`` - Django session framework
+### Django.Session
 
-``Django.Site`` / ``Django.Sites`` - Django site
+Django session framework model
 
-``Django.ContentType``/ ``Django.ContentTypes`` - Django content type
+### Django.Sessions
 
-``Django.Auth.Permission`` / ``Django.Auth.Permissions`` - Permissions
+Django session framework collection
 
-``Django.Auth.Group`` / ``Django.Auth.Groups`` - Groups of permissions
+### Django.Site
 
-``Django.Auth.User`` / ``Django.Auth.Users`` - Django users
+Django site model
+
+### Django.Sites
+
+Django site collection
+
+### Django.ContentType
+
+Django content type model
+
+### Django.ContentTypes
+
+Django content type collection
+
+### Django.Auth.Permission
+
+Permission model
+
+#### `toString() -> Promise<string>`
+
+Returns `Promise` with string representation of a permission.
+
+~~~js
+AuthPermission.forge({id: 1})
+.fetch()
+.then(function(permission) {
+  return permission.toString()
+}).then(function(permission) {
+  console.log(permission)
+})
+~~~
+
+Why Promise, not string? String representation needs `ContentType` object.
+
+### Django.Auth.Permissions
+
+Permission collection
+
+#### `getPermissions() -> Promise<Array<string>>`
+
+Array of a string representations of permissions.
+
+~~~js
+AuthPermissions.forge()
+.fetch()
+.then(function(permissions) {
+  return permissions.getPermissions()
+}).then(function(permissions) {
+  console.log(permissions)
+})
+~~~
+
+### Django.Auth.Group
+
+Groups of permissions model
+
+### Django.Auth.Groups
+
+Groups of permissions collection
+
+### Django.Auth.User
+
+Django user collection
+
+### Django.Auth.Users
+
+Django user collection
