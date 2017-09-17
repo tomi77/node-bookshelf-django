@@ -1,3 +1,5 @@
+Promise = require 'bluebird'
+
 module.exports = (bookshelf) ->
   bookshelf.plugin 'registry'
 
@@ -9,7 +11,13 @@ module.exports = (bookshelf) ->
 
       contentType: () -> @belongsTo 'Django.ContentType', 'content_type_id'
 
-      toString: () -> "#{ @related('contentType').get 'app_label' }.#{ @get 'codename' }"
+      toString: () ->
+        (unless @related('contentType').get('app_label')?
+          @load('contentType')
+        else
+          Promise.resolve @
+        ).then (permission) ->
+          "#{ permission.related('contentType').get('app_label') }.#{ permission.get('codename') }"
 
 
   unless bookshelf.collection('Django.Auth.Permissions')?
