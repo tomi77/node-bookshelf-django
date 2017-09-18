@@ -116,8 +116,6 @@ AuthPermission.forge({id: 1})
 })
 ~~~
 
-Why Promise, not string? String representation needs `ContentType` object.
-
 ### Django.Auth.Permissions
 
 Permission collection
