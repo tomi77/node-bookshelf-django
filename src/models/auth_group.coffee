@@ -13,9 +13,8 @@ module.exports = (bookshelf) ->
       permissions: () -> @belongsToMany 'Django.Auth.Permissions', 'auth_group_permissions', 'group_id', 'permission_id'
 
       getPermissions: () ->
-        @load ['permissions']
-        .then (group) ->
-          group.related('permissions').getPermissions()
+        @load ['permissions', 'permissions.contentType']
+        .then (group) -> group.related('permissions')
 
 
   unless bookshelf.collection('Django.Auth.Groups')?
@@ -23,11 +22,8 @@ module.exports = (bookshelf) ->
       model: bookshelf.model 'Django.Auth.Group'
 
       getPermissions: () ->
-        Promise.all @map (group) -> group.getPermissions()
-        .then (permissions) ->
-          result = []
-          permissions.forEach (perms) -> result = result.concat perms
-          _.uniq result
+        @mapThen (group) -> group.getPermissions()
+        .then (permissions) -> _.uniqBy permissions, (permission) -> permission.get 'id'
 
 
   Model: bookshelf.model 'Django.Auth.Group'

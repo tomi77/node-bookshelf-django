@@ -91,6 +91,8 @@ Permission model
 Returns string representation of a permission.
 
 ~~~js
+const AuthPermission = bookshelf.model('Django.Auth.Permission')
+
 AuthPermission.forge({id: 1})
 .fetch({withRelated: 'contentType'})
 .then(function(permission) {
@@ -103,12 +105,14 @@ AuthPermission.forge({id: 1})
 Returns `Promise` with string representation of a permission.
 
 ~~~js
+const AuthPermissions = bookshelf.collection('Django.Auth.Permissions')
+
 AuthPermission.forge({id: 1})
-.fetch()
+.fetch({withRelated: 'contentType'})
 .then(function(permission) {
   return permission.toStringAsync()
 }).then(function(permission) {
-  console.log(permission)
+  console.log('' + permission)
 })
 ~~~
 
@@ -118,35 +122,24 @@ Why Promise, not string? String representation needs `ContentType` object.
 
 Permission collection
 
-#### `getPermissions() -> Promise<Array<string>>`
-
-Array of a string representations of permissions.
-
-~~~js
-AuthPermissions.forge()
-.fetch()
-.then(function(permissions) {
-  return permissions.getPermissions()
-}).then(function(permissions) {
-  console.log(permissions)
-})
-~~~
-
 ### Django.Auth.Group
 
 Groups of permissions model
 
-#### `getPermissions() -> Promise<Array<string>>`
+#### `getPermissions() -> Promise<Django.Auth.Permissions>`
 
-Array of a string representations of group permissions.
+Collection of permissions of group permissions.
 
 ~~~js
+const AuthPermission = bookshelf.model('Django.Auth.Permission')
+const AuthGroup = bookshelf.model('Django.Auth.Group')
+
 AuthGroup.forge()
-.fetch()
+.fetch({withRelated: ['permissions', 'permissions.contentType']})
 .then(function(permissions) {
   return permissions.getPermissions()
 }).then(function(permissions) {
-  console.log(permissions)
+  console.log(permissions.map(AuthPermission.stringify))
 })
 ~~~
 
@@ -154,17 +147,20 @@ AuthGroup.forge()
 
 Groups of permissions collection
 
-#### `getPermissions() -> Promise<Array<string>>`
+#### `getPermissions() -> Promise<Django.Auth.Permissions>`
 
-Unique array of a string representations of group permissions.
+Collection of unique permissions of group permissions.
 
 ~~~js
+const AuthPermission = bookshelf.model('Django.Auth.Permission')
+const AuthGroups = bookshelf.collection('Django.Auth.Groups')
+
 AuthGroups.all()
-.fetch()
+.fetch({withRelated: ['permissions', 'permissions.contentType']})
 .then(function(permissions) {
   return permissions.getPermissions()
 }).then(function(permissions) {
-  console.log(permissions)
+  console.log(permissions.map(AuthPermission.stringify))
 })
 ~~~
 

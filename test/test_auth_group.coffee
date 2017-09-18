@@ -24,8 +24,9 @@ describe 'Django.Auth.Group', () ->
       .then (group) -> group.getPermissions()
       .then (permissions) ->
         assert.equal permissions.length, 3
-        ['test.add_test', 'test.change_test', 'test.delete_test'].forEach (permission) ->
-          assert.include permissions, permission
+        excepted = ['test.add_test', 'test.change_test', 'test.delete_test']
+        permissions.each (permission) ->
+          assert.include expected, permission.toString()
           return
 
       AuthGroup.forge id: 2
@@ -33,8 +34,9 @@ describe 'Django.Auth.Group', () ->
       .then (group) -> group.getPermissions()
       .then (permissions) ->
         assert.equal permissions.length, 3
-        ['test2.add_test2', 'test2.change_test2', 'test2.delete_test2'].forEach (permission) ->
-          assert.include permissions, permission
+        expected = ['test2.add_test2', 'test2.change_test2', 'test2.delete_test2']
+        permissions.each (permission) ->
+          assert.include expected, permission.toString()
           return
       return
     return
@@ -53,8 +55,9 @@ describe 'Django.Auth.Groups', () ->
       .then (groups) -> groups.getPermissions()
       .then (permissions) ->
         assert.equal permissions.length, 4
-        ['test.add_test', 'test.change_test', 'test.delete_test', 'test2.add_test2'].forEach (permission) ->
-          assert.include permissions, permission
+        expected = ['test.add_test', 'test.change_test', 'test.delete_test', 'test2.add_test2']
+        permissions.each (permission) ->
+          assert.include expected, permission.toString()
           return
 
       new AuthGroups()
@@ -63,8 +66,9 @@ describe 'Django.Auth.Groups', () ->
       .then (groups) -> groups.getPermissions()
       .then (permissions) ->
         assert.equal permissions.length, 4
-        ['test.change_test', 'test2.add_test2', 'test2.delete_test2', 'test2.change_test2'].forEach (permission) ->
-          assert.include permissions, permission
+        expected = ['test.change_test', 'test2.add_test2', 'test2.delete_test2', 'test2.change_test2']
+        permissions.each (permission) ->
+          assert.include expected, permission.toString()
           return
       return
     return

@@ -52,22 +52,4 @@ describe 'Django.Auth.Permission', () ->
       return
     return
   return
-
-describe 'Django.Auth.Permissions', () ->
-  before () -> knex.seed.run directory: 'test/seeds/auth_permissions/'
-
-  describe '#getPermissions', () ->
-    it 'should return all permissions', () ->
-      AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
-
-      AuthPermissions.forge()
-      .fetch()
-      .then (permissions) -> permissions.getPermissions()
-      .then (permissions) ->
-        assert.equal permissions.length, 3
-        ['test.add_test', 'test.change_test', 'test.delete_test'].forEach (permission) ->
-          assert.include permissions, permission
-          return
-    return
-  return
 return

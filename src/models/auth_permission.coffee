@@ -19,15 +19,13 @@ module.exports = (bookshelf) ->
         else
           Promise.resolve @
         ).then (permission) -> "#{ permission }"
+    ,
+      stringify: (permission) -> permission.toString()
 
 
   unless bookshelf.collection('Django.Auth.Permissions')?
     bookshelf.collection 'Django.Auth.Permissions',
       model: bookshelf.model 'Django.Auth.Permission'
-
-      getPermissions: () ->
-        @load ['contentType']
-        .then () => @mapThen (perm) -> perm.toString()
 
 
   Model: bookshelf.model 'Django.Auth.Permission'
