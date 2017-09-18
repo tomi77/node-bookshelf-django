@@ -51,5 +51,18 @@ describe 'Django.Auth.Permission', () ->
         return
       return
     return
+
+  describe '#stringify', () ->
+    it 'should format permission in Django style', () ->
+      AuthPermission = bookshelf.model 'Django.Auth.Permission'
+
+      AuthPermission.forge id: 1
+      .fetch withRelated: 'contentType'
+      .then AuthPermission.stringify
+      .then (permission) ->
+        assert.equal permission, 'test.add_test'
+        return
+      return
+    return
   return
 return
