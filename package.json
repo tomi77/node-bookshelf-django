@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/tomi77/node-bookshelf-django",
   "dependencies": {
-    "bluebird": "^3.5.0"
+    "bluebird": "^3.5.0",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "chai": "^4.0.0",

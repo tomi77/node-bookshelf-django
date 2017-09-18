@@ -1,3 +1,6 @@
+Promise = require 'bluebird'
+_ = require 'lodash'
+
 module.exports = (bookshelf) ->
   bookshelf.plugin 'registry'
 
@@ -18,6 +21,13 @@ module.exports = (bookshelf) ->
   unless bookshelf.collection('Django.Auth.Groups')?
     bookshelf.collection 'Django.Auth.Groups',
       model: bookshelf.model 'Django.Auth.Group'
+
+      getPermissions: () ->
+        Promise.all @map (group) -> group.getPermissions()
+        .then (permissions) ->
+          result = []
+          permissions.forEach (perms) -> result = result.concat perms
+          _.uniq result
 
 
   Model: bookshelf.model 'Django.Auth.Group'

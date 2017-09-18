@@ -154,6 +154,20 @@ AuthGroup.forge()
 
 Groups of permissions collection
 
+#### `getPermissions() -> Promise<Array<string>>`
+
+Unique array of a string representations of group permissions.
+
+~~~js
+AuthGroups.all()
+.fetch()
+.then(function(permissions) {
+  return permissions.getPermissions()
+}).then(function(permissions) {
+  console.log(permissions)
+})
+~~~
+
 ### Django.Auth.User
 
 Django user collection
