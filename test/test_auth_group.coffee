@@ -16,7 +16,7 @@ describe 'Django.Auth.Group', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_group/'
 
   describe '#getPermissions', () ->
-    it 'should format permission in Django style', () ->
+    it 'should return all permissions', () ->
       AuthGroup = bookshelf.model 'Django.Auth.Group'
 
       AuthGroup.forge id: 1
