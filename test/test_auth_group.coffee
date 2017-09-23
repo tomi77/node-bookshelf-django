@@ -15,6 +15,12 @@ before () -> knex.migrate.latest directory: 'src/migrations/'
 describe 'Django.Auth.Group', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_group/'
 
+  after () ->
+    knex('auth_group_permissions').del()
+    .then () -> knex('auth_group').del()
+    .then () -> knex('auth_permission').del()
+    .then () -> knex('django_content_type').del()
+
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
       AuthGroup = bookshelf.model 'Django.Auth.Group'
@@ -24,10 +30,9 @@ describe 'Django.Auth.Group', () ->
       .then (group) -> group.getPermissions()
       .then (permissions) ->
         assert.equal permissions.length, 3
-        excepted = ['test.add_test', 'test.change_test', 'test.delete_test']
+        expected = ['test.add_test', 'test.change_test', 'test.delete_test']
         permissions.each (permission) ->
           assert.include expected, permission.toString()
-          return
 
       AuthGroup.forge id: 2
       .fetch withRelated: 'permissions'
@@ -37,13 +42,15 @@ describe 'Django.Auth.Group', () ->
         expected = ['test2.add_test2', 'test2.change_test2', 'test2.delete_test2']
         permissions.each (permission) ->
           assert.include expected, permission.toString()
-          return
-      return
-    return
-  return
 
 describe 'Django.Auth.Groups', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_groups/'
+
+  after () ->
+    knex('auth_group_permissions').del()
+    .then () -> knex('auth_group').del()
+    .then () -> knex('auth_permission').del()
+    .then () -> knex('django_content_type').del()
 
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
@@ -58,7 +65,6 @@ describe 'Django.Auth.Groups', () ->
         expected = ['test.add_test', 'test.change_test', 'test.delete_test', 'test2.add_test2']
         permissions.each (permission) ->
           assert.include expected, permission.toString()
-          return
 
       new AuthGroups()
       .query (qb) -> qb.where 'id', 'in', [2, 3]
@@ -69,7 +75,3 @@ describe 'Django.Auth.Groups', () ->
         expected = ['test.change_test', 'test2.add_test2', 'test2.delete_test2', 'test2.change_test2']
         permissions.each (permission) ->
           assert.include expected, permission.toString()
-          return
-      return
-    return
-  return

@@ -23,7 +23,12 @@ module.exports = (bookshelf) ->
 
       getPermissions: () ->
         @mapThen (group) -> group.getPermissions()
+        .then (x) ->
+          _.reduce x, (memo, y) ->
+            memo.concat y.models
+          , []
         .then (permissions) -> _.uniqBy permissions, (permission) -> permission.get 'id'
+        .then (permissions) -> bookshelf.collection('Django.Auth.Permissions').forge(permissions)
 
 
   Model: bookshelf.model 'Django.Auth.Group'
