@@ -15,6 +15,10 @@ before () -> knex.migrate.latest directory: 'src/migrations/'
 describe 'Django.Auth.Permission', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_permission/'
 
+  after () ->
+    knex('auth_permission').del()
+    .then () -> knex('django_content_type').del()
+
   describe '#toString', () ->
     it 'should format permission in Django style', () ->
       AuthPermission = bookshelf.model 'Django.Auth.Permission'
@@ -23,8 +27,6 @@ describe 'Django.Auth.Permission', () ->
       .fetch withRelated: 'contentType'
       .then (permission) ->
         assert.equal permission.toString(), 'test.add_test'
-        return
-      return
 
   describe '#toStringAsync', () ->
     describe 'should format permission in Django style', () ->
@@ -36,8 +38,6 @@ describe 'Django.Auth.Permission', () ->
         .then (permission) -> permission.toStringAsync()
         .then (permission) ->
           assert.equal permission, 'test.add_test'
-          return
-        return
 
       it 'when contentType is not loaded', () ->
         AuthPermission = bookshelf.model 'Django.Auth.Permission'
@@ -47,10 +47,6 @@ describe 'Django.Auth.Permission', () ->
         .then (permission) -> permission.toStringAsync()
         .then (permission) ->
           assert.equal permission, 'test.add_test'
-          return
-        return
-      return
-    return
 
   describe '#stringify', () ->
     it 'should format permission in Django style', () ->
@@ -61,8 +57,3 @@ describe 'Django.Auth.Permission', () ->
       .then AuthPermission.stringify
       .then (permission) ->
         assert.equal permission, 'test.add_test'
-        return
-      return
-    return
-  return
-return
