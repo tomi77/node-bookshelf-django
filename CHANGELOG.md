@@ -5,7 +5,7 @@
 ### News
 
 * Add function that formats permissions in Django style (content_type.permission)
-* Add function that gets list of permissions
+* Add function that gets list of permissions in ``Django.Auth.Group``, ``Django.Auth.Groups`` and ``Django.Auth.User``
 * Add knex migrations
 * Move ``bookshelf`` from `dependencies` to `peerDependencies`
 * Remove ``coffee-script`` dependency
