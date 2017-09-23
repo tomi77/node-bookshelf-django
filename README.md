@@ -166,6 +166,22 @@ AuthGroups.all()
 
 Django user collection
 
+#### `getPermissions() -> Promise<Django.Auth.Permissions>`
+
+Collection of unique permissions of group permissions and permissions.
+
+~~~js
+const AuthUser = bookshelf.collection('Django.Auth.User')
+
+AuthUser.all()
+.fetch()
+.then(function(user) {
+  return user.getPermissions()
+}).then(function(permissions) {
+  console.log(permissions.map(AuthPermission.stringify))
+})
+~~~
+
 ### Django.Auth.Users
 
 Django user collection
