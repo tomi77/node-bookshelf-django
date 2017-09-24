@@ -1,10 +1,4 @@
-knex = require('knex')
-  client: 'sqlite3'
-  connection:
-    filename: ':memory:'
-  useNullAsDefault: yes
-
-bookshelf = require('bookshelf') knex
+{knex, bookshelf, clean_db} = require './utils'
 
 require('../src') bookshelf
 
@@ -15,11 +9,7 @@ before () -> knex.migrate.latest directory: 'src/migrations/'
 describe 'Django.Auth.Group', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_group/'
 
-  after () ->
-    knex('auth_group_permissions').del()
-    .then () -> knex('auth_group').del()
-    .then () -> knex('auth_permission').del()
-    .then () -> knex('django_content_type').del()
+  after () -> clean_db()
 
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
@@ -46,11 +36,7 @@ describe 'Django.Auth.Group', () ->
 describe 'Django.Auth.Groups', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_groups/'
 
-  after () ->
-    knex('auth_group_permissions').del()
-    .then () -> knex('auth_group').del()
-    .then () -> knex('auth_permission').del()
-    .then () -> knex('django_content_type').del()
+  after () -> clean_db()
 
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->

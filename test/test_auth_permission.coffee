@@ -1,10 +1,4 @@
-knex = require('knex')
-  client: 'sqlite3'
-  connection:
-    filename: ':memory:'
-  useNullAsDefault: yes
-
-bookshelf = require('bookshelf') knex
+{knex, bookshelf, clean_db} = require './utils'
 
 require('../src') bookshelf
 
@@ -15,9 +9,7 @@ before () -> knex.migrate.latest directory: 'src/migrations/'
 describe 'Django.Auth.Permission', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_permission/'
 
-  after () ->
-    knex('auth_permission').del()
-    .then () -> knex('django_content_type').del()
+  after () -> clean_db()
 
   describe '#toString', () ->
     it 'should format permission in Django style', () ->
