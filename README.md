@@ -19,6 +19,8 @@
   * [Django.Sites](#djangosites)
   * [Django.FlatPage](#djangoflatpage)
   * [Django.FlatPages](#djangoflatpages)
+  * [Django.Redirect](#djangoredirect)
+  * [Django.Redirects](#djangoredirects)
   * [Django.ContentType](#djangocontenttype)
   * [Django.ContentTypes](#djangocontenttypes)
   * [Django.Auth.Permission](#djangoauthpermission)
@@ -97,6 +99,28 @@ FlatPage.forge({id: 1})
 ### Django.FlatPages
 
 Django flat pages collection
+
+### Django.Redirect
+
+Django redirect model
+
+### `toString() -> string`
+
+Returns string representation of a redirect.
+
+~~~js
+const Redirect = bookshelf.model('Django.Redirect')
+
+Redirect.forge({id: 1})
+.fetch()
+.then(function(redirect) {
+  console.log(redirect.toString())
+})
+~~~
+
+### Django.Redirects
+
+Django redirects collection
 
 ### Django.ContentType
 

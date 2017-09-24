@@ -12,7 +12,7 @@
 
 * add `comments` tables
 * ~~add `flatpage` tables~~
-* add `redirect` table
+* ~~add `redirect` table~~
 
 ## Tests
 

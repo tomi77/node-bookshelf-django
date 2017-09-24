@@ -29,6 +29,14 @@ exports.up = (knex, Promise) ->
     table.index('flatpage_id')
     table.index('site_id')
     return
+  .createTableIfNotExists 'django_redirect', (table) ->
+    table.increments().primary()
+    table.integer('site_id').notNullable().references('django_site.id')
+    table.string('old_path', 200).notNullable()
+    table.string('new_path', 200).notNullable()
+    table.index('old_path')
+    table.unique(['site_id', 'old_path'])
+    return
   .createTableIfNotExists 'django_session', (table) ->
     table.string('session_key', 40).notNullable()
     table.text('session_data').notNullable()
@@ -95,5 +103,8 @@ exports.down = (knex, Promise) ->
   .dropTableIfExists('auth_group')
   .dropTableIfExists('auth_permission')
   .dropTableIfExists('django_session')
+  .dropTableIfExists('django_redirect')
+  .dropTableIfExists('django_flatpage_sites')
+  .dropTableIfExists('django_flatpage')
   .dropTableIfExists('django_site')
   .dropTableIfExists('django_content_type')

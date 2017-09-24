@@ -2,6 +2,7 @@ module.exports = (bookshelf) ->
   require('./models/django_session') bookshelf
   require('./models/django_site') bookshelf
   require('./models/django_flatpage') bookshelf
+  require('./models/django_redirect') bookshelf
   require('./models/django_content_type') bookshelf
   require('./models/auth_permission') bookshelf
   require('./models/auth_group') bookshelf
@@ -13,6 +14,8 @@ module.exports = (bookshelf) ->
   Sites: bookshelf.collection 'Django.Sites'
   FlatPage: bookshelf.model 'Django.FlatPage'
   FlatPages: bookshelf.collection 'Django.FlatPages'
+  Redirect: bookshelf.model 'Django.Redirect'
+  Redirects: bookshelf.collection 'Django.Redirects'
   ContentType: bookshelf.model 'Django.ContentType'
   ContentTypes: bookshelf.collection 'Django.ContentTypes'
 
