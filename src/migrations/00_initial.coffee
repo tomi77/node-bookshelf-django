@@ -11,6 +11,24 @@ exports.up = (knex, Promise) ->
     table.string('domain', 100).notNullable()
     table.string('name', 50).notNullable()
     return
+  .createTableIfNotExists 'django_flatpage', (table) ->
+    table.increments().primary()
+    table.string('url', 100).notNullable()
+    table.string('title', 200).notNullable()
+    table.text('content').notNullable()
+    table.boolean('enable_comments').notNullable().defaultTo(no)
+    table.string('template_name', 70).notNullable()
+    table.boolean('registration_required').notNullable().defaultTo(no)
+    table.index('url')
+    return
+  .createTableIfNotExists 'django_flatpage_sites', (table) ->
+    table.increments().primary()
+    table.integer('flatpage_id').notNullable().references('django_flatpage.id')
+    table.integer('site_id').notNullable().references('django_site.id')
+    table.unique(['flatpage_id', 'site_id'])
+    table.index('flatpage_id')
+    table.index('site_id')
+    return
   .createTableIfNotExists 'django_session', (table) ->
     table.string('session_key', 40).notNullable()
     table.text('session_data').notNullable()

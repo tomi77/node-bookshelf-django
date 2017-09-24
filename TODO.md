@@ -11,7 +11,7 @@
 ## New Django modules
 
 * add `comments` tables
-* add `flatpage` table
+* ~~add `flatpage` tables~~
 * add `redirect` table
 
 ## Tests

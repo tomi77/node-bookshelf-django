@@ -1,6 +1,7 @@
 module.exports = (bookshelf) ->
   require('./models/django_session') bookshelf
   require('./models/django_site') bookshelf
+  require('./models/django_flatpage') bookshelf
   require('./models/django_content_type') bookshelf
   require('./models/auth_permission') bookshelf
   require('./models/auth_group') bookshelf
@@ -10,6 +11,8 @@ module.exports = (bookshelf) ->
   Sessions: bookshelf.collection 'Django.Sessions'
   Site: bookshelf.model 'Django.Site'
   Sites: bookshelf.collection 'Django.Sites'
+  FlatPage: bookshelf.model 'Django.FlatPage'
+  FlatPages: bookshelf.collection 'Django.FlatPages'
   ContentType: bookshelf.model 'Django.ContentType'
   ContentTypes: bookshelf.collection 'Django.ContentTypes'
 
