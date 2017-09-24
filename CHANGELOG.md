@@ -4,6 +4,8 @@
 
 ### News
 
+* Add ``Django.FlatPage`` and ``Django.FlatPages``
+* Add ``Django.Redirect`` and ``Django.Redirects``
 * Add function that formats permissions in Django style (content_type.permission)
 * Add function that gets list of permissions in ``Django.Auth.Group``, ``Django.Auth.Groups`` and ``Django.Auth.User``
 * Add knex migrations
