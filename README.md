@@ -17,6 +17,8 @@
   * [Django.Sessions](#djangosessions)
   * [Django.Site](#djangosite)
   * [Django.Sites](#djangosites)
+  * [Django.FlatPage](#djangoflatpage)
+  * [Django.FlatPages](#djangoflatpages)
   * [Django.ContentType](#djangocontenttype)
   * [Django.ContentTypes](#djangocontenttypes)
   * [Django.Auth.Permission](#djangoauthpermission)
@@ -73,6 +75,28 @@ Django site model
 ### Django.Sites
 
 Django site collection
+
+### Django.FlatPage
+
+Django flat page model
+
+### `toString() -> string`
+
+Returns string representation of a permission.
+
+~~~js
+const FlatPage = bookshelf.model('Django.FlatPage')
+
+FlatPage.forge({id: 1})
+.fetch()
+.then(function(flat_page) {
+  console.log(flat_page.toString())
+})
+~~~
+
+### Django.FlatPages
+
+Django flat pages collection
 
 ### Django.ContentType
 
@@ -171,9 +195,10 @@ Django user collection
 Collection of unique permissions of group permissions and permissions.
 
 ~~~js
+const AuthPermission = bookshelf.model('Django.Auth.Permission')
 const AuthUser = bookshelf.collection('Django.Auth.User')
 
-AuthUser.all()
+AuthUser.forge({id: 1})
 .fetch()
 .then(function(user) {
   return user.getPermissions()
