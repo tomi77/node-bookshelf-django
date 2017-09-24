@@ -31,7 +31,7 @@ describe 'Django.Auth.User', () ->
           expect(permissions).to.have.length 6
 
     describe 'for user', () ->
-      it 'should return none permissions', () ->
+      it 'should return mixed permissions from user groups and user permissions', () ->
         AuthUser.forge id: 3
         .fetch()
         .then (user) -> user.getPermissions()
