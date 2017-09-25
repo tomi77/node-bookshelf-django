@@ -10,7 +10,6 @@
 
 ## New Django modules
 
-* add `comments` tables
 * ~~add `flatpage` tables~~
 * ~~add `redirect` table~~
 

@@ -1,6 +1,6 @@
 {
   "name": "bookshelf-django",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Django models for Bookshelf",
   "main": "index.js",
   "scripts": {
