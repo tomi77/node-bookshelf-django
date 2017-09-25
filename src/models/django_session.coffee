@@ -5,6 +5,8 @@ module.exports = (bookshelf) ->
     bookshelf.model 'Django.Session',
       tableName: 'django_session'
 
+      toString: () -> "#{ @get 'session_key' }"
+
   unless bookshelf.collection('Django.Sessions')?
     bookshelf.collection 'Django.Sessions',
       model: bookshelf.model 'Django.Session'

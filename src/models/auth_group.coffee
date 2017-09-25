@@ -16,6 +16,8 @@ module.exports = (bookshelf) ->
         @load ['permissions', 'permissions.contentType']
         .then (group) -> group.related('permissions')
 
+      toString: () -> "#{ @get 'name' }"
+
 
   unless bookshelf.collection('Django.Auth.Groups')?
     bookshelf.collection 'Django.Auth.Groups',

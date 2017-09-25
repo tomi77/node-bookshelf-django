@@ -5,6 +5,8 @@ module.exports = (bookshelf) ->
     bookshelf.model 'Django.Site',
       tableName: 'django_site'
 
+      toString: () -> "#{ @get 'domain' }"
+
   unless bookshelf.collection('Django.Sites')?
     bookshelf.collection 'Django.Sites',
       model: bookshelf.model 'Django.Site'

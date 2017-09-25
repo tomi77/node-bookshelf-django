@@ -15,6 +15,8 @@ module.exports = (bookshelf) ->
 
       groups: () -> @belongsToMany 'Django.Auth.Groups', 'auth_user_groups', 'user_id', 'group_id'
 
+      toString: () -> "#{ @get 'username' }"
+
       getPermissions: () ->
         unless @get 'is_active'
           Promise.resolve []

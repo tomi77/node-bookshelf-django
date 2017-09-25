@@ -1,5 +1,11 @@
 # Changelog
 
+## master
+
+### News
+
+* Add missing ``toString`` methods
+
 ## 0.2.0
 
 ### News
