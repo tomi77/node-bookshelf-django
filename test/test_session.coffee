@@ -8,6 +8,8 @@ Session = bookshelf.model 'Django.Session'
 
 before () -> knex.migrate.latest directory: 'src/migrations/'
 
+after () -> knex.migrate.rollback directory: 'src/migrations/'
+
 describe 'Django.Session', () ->
   before () -> knex.seed.run directory: 'test/seeds/session/'
 

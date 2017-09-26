@@ -10,6 +10,8 @@ AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
 
 before () -> knex.migrate.latest directory: 'src/migrations/'
 
+after () -> knex.migrate.rollback directory: 'src/migrations/'
+
 describe 'Django.Auth.Group', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_group/'
 
@@ -36,6 +38,22 @@ describe 'Django.Auth.Group', () ->
         expected = ['test2.add_test2', 'test2.change_test2', 'test2.delete_test2']
         permissions.each (permission) ->
           assert.include expected, permission.toString()
+
+  describe '#toString', () ->
+    it 'should return string representation of group', () ->
+      AuthGroup.forge id: 1
+      .fetch()
+      .then (group) ->
+        assert.isString group.toString()
+        assert.equal group.toString(), 'group 1'
+
+  describe '#permissions', () ->
+    it 'should be a reference to Django.Auth.Permissions', () ->
+      AuthGroup.forge id: 1
+      .fetch()
+      .then (group) ->
+        assert.instanceOf group.permissions(), AuthPermissions
+        assert.instanceOf group.related('permissions'), AuthPermissions
 
 describe 'Django.Auth.Groups', () ->
   before () -> knex.seed.run directory: 'test/seeds/auth_groups/'

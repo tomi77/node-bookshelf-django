@@ -8,6 +8,8 @@ Site = bookshelf.model 'Django.Site'
 
 before () -> knex.migrate.latest directory: 'src/migrations/'
 
+after () -> knex.migrate.rollback directory: 'src/migrations/'
+
 describe 'Django.Site', () ->
   before () -> knex.seed.run directory: 'test/seeds/site/'
 
