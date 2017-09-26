@@ -4,6 +4,10 @@ require('../src') bookshelf
 
 assert = require('chai').assert
 
+AuthGroup = bookshelf.model 'Django.Auth.Group'
+AuthGroups = bookshelf.collection 'Django.Auth.Groups'
+AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
+
 before () -> knex.migrate.latest directory: 'src/migrations/'
 
 describe 'Django.Auth.Group', () ->
@@ -13,9 +17,6 @@ describe 'Django.Auth.Group', () ->
 
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
-      AuthGroup = bookshelf.model 'Django.Auth.Group'
-      AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
-
       AuthGroup.forge id: 1
       .fetch withRelated: 'permissions'
       .then (group) -> group.getPermissions()
@@ -43,10 +44,7 @@ describe 'Django.Auth.Groups', () ->
 
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
-      AuthGroups = bookshelf.collection 'Django.Auth.Groups'
-      AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
-
-      new AuthGroups()
+      AuthGroups.forge()
       .query (qb) -> qb.where 'id', 'in', [1, 2]
       .fetch()
       .then (groups) -> groups.getPermissions()
@@ -57,7 +55,7 @@ describe 'Django.Auth.Groups', () ->
         permissions.each (permission) ->
           assert.include expected, permission.toString()
 
-      new AuthGroups()
+      AuthGroups.forge()
       .query (qb) -> qb.where 'id', 'in', [2, 3]
       .fetch()
       .then (groups) -> groups.getPermissions()

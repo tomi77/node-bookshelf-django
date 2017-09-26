@@ -2,7 +2,7 @@
 
 require('../src') bookshelf
 
-expect = require('chai').expect
+assert = require('chai').assert
 
 AuthUser = bookshelf.model 'Django.Auth.User'
 AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
@@ -21,8 +21,8 @@ describe 'Django.Auth.User', () ->
         .fetch()
         .then (user) -> user.getPermissions()
         .then (permissions) ->
-          expect(permissions).to.be.an.instanceof AuthPermissions
-          expect(permissions).to.have.length 0
+          assert.instanceOf permissions, AuthPermissions
+          assert.lengthOf permissions, 0
 
     describe 'for superuser', () ->
       it 'should return all permissions', () ->
@@ -30,8 +30,8 @@ describe 'Django.Auth.User', () ->
         .fetch()
         .then (user) -> user.getPermissions()
         .then (permissions) ->
-          expect(permissions).to.be.an.instanceof AuthPermissions
-          expect(permissions).to.have.length 6
+          assert.instanceOf permissions, AuthPermissions
+          assert.lengthOf permissions, 6
 
     describe 'for user', () ->
       it 'should return mixed permissions from user groups and user permissions', () ->
@@ -39,5 +39,5 @@ describe 'Django.Auth.User', () ->
         .fetch()
         .then (user) -> user.getPermissions()
         .then (permissions) ->
-          expect(permissions).to.be.an.instanceof AuthPermissions
-          expect(permissions).to.have.length 4
+          assert.instanceOf permissions, AuthPermissions
+          assert.lengthOf permissions, 4
