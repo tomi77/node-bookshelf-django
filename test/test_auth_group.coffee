@@ -14,11 +14,13 @@ describe 'Django.Auth.Group', () ->
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
       AuthGroup = bookshelf.model 'Django.Auth.Group'
+      AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
 
       AuthGroup.forge id: 1
       .fetch withRelated: 'permissions'
       .then (group) -> group.getPermissions()
       .then (permissions) ->
+        assert.instanceOf permissions, AuthPermissions
         assert.equal permissions.length, 3
         expected = ['test.add_test', 'test.change_test', 'test.delete_test']
         permissions.each (permission) ->
@@ -28,6 +30,7 @@ describe 'Django.Auth.Group', () ->
       .fetch withRelated: 'permissions'
       .then (group) -> group.getPermissions()
       .then (permissions) ->
+        assert.instanceOf permissions, AuthPermissions
         assert.equal permissions.length, 3
         expected = ['test2.add_test2', 'test2.change_test2', 'test2.delete_test2']
         permissions.each (permission) ->
@@ -41,12 +44,14 @@ describe 'Django.Auth.Groups', () ->
   describe '#getPermissions', () ->
     it 'should return all permissions', () ->
       AuthGroups = bookshelf.collection 'Django.Auth.Groups'
+      AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
 
       new AuthGroups()
       .query (qb) -> qb.where 'id', 'in', [1, 2]
       .fetch()
       .then (groups) -> groups.getPermissions()
       .then (permissions) ->
+        assert.instanceOf permissions, AuthPermissions
         assert.equal permissions.length, 4
         expected = ['test.add_test', 'test.change_test', 'test.delete_test', 'test2.add_test2']
         permissions.each (permission) ->
@@ -57,6 +62,7 @@ describe 'Django.Auth.Groups', () ->
       .fetch()
       .then (groups) -> groups.getPermissions()
       .then (permissions) ->
+        assert.instanceOf permissions, AuthPermissions
         assert.equal permissions.length, 4
         expected = ['test.change_test', 'test2.add_test2', 'test2.delete_test2', 'test2.change_test2']
         permissions.each (permission) ->

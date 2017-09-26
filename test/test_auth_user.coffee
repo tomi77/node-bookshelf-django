@@ -5,6 +5,7 @@ require('../src') bookshelf
 expect = require('chai').expect
 
 AuthUser = bookshelf.model 'Django.Auth.User'
+AuthPermissions = bookshelf.collection 'Django.Auth.Permissions'
 
 before () -> knex.migrate.latest directory: 'src/migrations/'
 
@@ -20,6 +21,7 @@ describe 'Django.Auth.User', () ->
         .fetch()
         .then (user) -> user.getPermissions()
         .then (permissions) ->
+          expect(permissions).to.be.an.instanceof AuthPermissions
           expect(permissions).to.have.length 0
 
     describe 'for superuser', () ->
@@ -28,6 +30,7 @@ describe 'Django.Auth.User', () ->
         .fetch()
         .then (user) -> user.getPermissions()
         .then (permissions) ->
+          expect(permissions).to.be.an.instanceof AuthPermissions
           expect(permissions).to.have.length 6
 
     describe 'for user', () ->
@@ -36,4 +39,5 @@ describe 'Django.Auth.User', () ->
         .fetch()
         .then (user) -> user.getPermissions()
         .then (permissions) ->
+          expect(permissions).to.be.an.instanceof AuthPermissions
           expect(permissions).to.have.length 4

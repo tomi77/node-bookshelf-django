@@ -19,7 +19,7 @@ module.exports = (bookshelf) ->
 
       getPermissions: () ->
         unless @get 'is_active'
-          Promise.resolve []
+          Promise.resolve bookshelf.collection('Django.Auth.Permissions').forge()
         else if @get 'is_superuser'
           bookshelf.collection 'Django.Auth.Permissions'
           .forge()

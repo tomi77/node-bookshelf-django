@@ -18,6 +18,7 @@ describe 'Django.Auth.Permission', () ->
       AuthPermission.forge id: 1
       .fetch withRelated: 'contentType'
       .then (permission) ->
+        assert.isString permission.toString()
         assert.equal permission.toString(), 'test.add_test'
 
   describe '#toStringAsync', () ->
@@ -29,6 +30,7 @@ describe 'Django.Auth.Permission', () ->
         .fetch withRelated: 'contentType'
         .then (permission) -> permission.toStringAsync()
         .then (permission) ->
+          assert.isString permission
           assert.equal permission, 'test.add_test'
 
       it 'when contentType is not loaded', () ->
@@ -38,6 +40,7 @@ describe 'Django.Auth.Permission', () ->
         .fetch()
         .then (permission) -> permission.toStringAsync()
         .then (permission) ->
+          assert.isString permission
           assert.equal permission, 'test.add_test'
 
   describe '#stringify', () ->
@@ -48,4 +51,5 @@ describe 'Django.Auth.Permission', () ->
       .fetch withRelated: 'contentType'
       .then AuthPermission.stringify
       .then (permission) ->
+        assert.isString permission
         assert.equal permission, 'test.add_test'
