@@ -6,6 +6,10 @@
 
 * Add missing ``toString`` methods
 
+### fixed
+
+* Django.Auth.User#getPermissions for inactive user should return empty Django.Auth.Permissions collection
+
 ## 0.2.0
 
 ### News
