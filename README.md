@@ -29,6 +29,7 @@
   * [Django.Auth.Groups](#djangoauthgroups)
   * [Django.Auth.User](#djangoauthuser)
   * [Django.Auth.Users](#djangoauthusers)
+* [Testing your project](#testing-your-project)
 
 ## Installation
 
@@ -160,7 +161,28 @@ AuthPermission.forge({id: 1})
 .then(function(permission) {
   return permission.toStringAsync()
 }).then(function(permission) {
-  console.log('' + permission)
+  console.log(permission)
+})
+~~~
+
+#### `stringify(permissionModel) -> string`
+
+_Parameters_
+
+* ``permissionModel`` `Django.Auth.Permission`
+
+  `Django.Auth.Permission` object
+
+Stringify a `Django.Auth.Permission` object.
+
+~~~js
+const AuthPermission = bookshelf.model('Django.Auth.Permission')
+
+AuthPermission.forge({id: 1})
+.fetch()
+.then(AuthPermission.stringify)
+.then(function(permission) {
+  console.log(permission)
 })
 ~~~
 
@@ -220,7 +242,7 @@ Collection of unique permissions of group permissions and permissions.
 
 ~~~js
 const AuthPermission = bookshelf.model('Django.Auth.Permission')
-const AuthUser = bookshelf.collection('Django.Auth.User')
+const AuthUser = bookshelf.model('Django.Auth.User')
 
 AuthUser.forge({id: 1})
 .fetch()
@@ -234,3 +256,33 @@ AuthUser.forge({id: 1})
 ### Django.Auth.Users
 
 Django user collection
+
+## Testing your project
+
+In `beforeAll` hook runs knex migrations in order
+
+* Django
+* Your project
+
+All migrations must have own migration table (`tableName` property).
+
+~~~js
+before(function() {
+  knex.migrate.latest({directory: 'node_modules/bookshelf-django/migrations/', tableName: 'knex_migrations_django'})
+}).then(function() {
+  knex.migrate.latest({directory: 'src/migrations/', tableName: 'knex_migrations_my_project'})
+})
+~~~
+
+In `afterAll` hook runs knex migrations in reverse order
+
+* Your project
+* Django
+
+~~~js
+after(function() {
+  knex.migrate.rollback({directory: 'src/migrations/', tableName: 'knex_migrations_my_project'})
+}).then(function() {
+  knex.migrate.rollback({directory: 'node_modules/bookshelf-django/migrations/', tableName: 'knex_migrations_django'})
+})
+~~~
