@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+
+* Improve documentation
+
 ## 0.2.1
 
 ### News
