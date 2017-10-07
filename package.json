@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "coffee --bare --compile --output . src/",
     "lint": "coffeelint src/",
-    "test": "mocha --require coffee-script/register --require coffee-coverage/register-istanbul --recursive --exit test/*.coffee",
+    "test": "mocha --require coffeescript/register --require coffee-coverage/register-istanbul --recursive --exit test/*.coffee",
     "coverage": "npm test && istanbul report",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls"
   },
