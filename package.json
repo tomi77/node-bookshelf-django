@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "coffee --bare --compile --output . src/",
     "lint": "coffeelint src/",
-    "test": "mocha --compilers coffee:coffee-script/register --require coffee-coverage/register-istanbul --recursive",
+    "test": "mocha --require coffee-script/register --require coffee-coverage/register-istanbul --recursive --exit test/*.coffee",
     "coverage": "npm test && istanbul report",
     "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls"
   },
@@ -31,11 +31,11 @@
   "devDependencies": {
     "chai": "^4.0.0",
     "coffee-coverage": "^2.0.1",
-    "coffee-script": "^1.10.0",
-    "coffeelint": "^1.15.7",
-    "coveralls": "^2.13.1",
+    "coffeelint": "^2.0.0",
+    "coffeescript": "^2.0.1",
+    "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
-    "mocha": "^3.4.0",
+    "mocha": "^4.0.0",
     "sqlite3": "^3.1.4"
   },
   "peerDependencies": {

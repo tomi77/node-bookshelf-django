@@ -3,6 +3,7 @@
 ## master
 
 * Improve documentation
+* @deps update
 
 ## 0.2.1
 
