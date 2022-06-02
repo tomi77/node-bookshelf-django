@@ -6,4 +6,4 @@ before_script:
   - npm install bookshelf@0.10.4 knex@0.13.0
 
 script:
-  - npm run coveralls
+  - npm test

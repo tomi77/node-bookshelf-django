@@ -1,7 +1,6 @@
 # Django models for Bookshelf
 
 [![Build Status](https://travis-ci.org/tomi77/node-bookshelf-django.svg)](https://travis-ci.org/tomi77/node-bookshelf-django)
-[![Coverage Status](https://coveralls.io/repos/github/tomi77/node-bookshelf-django/badge.svg?branch=master)](https://coveralls.io/github/tomi77/node-bookshelf-django?branch=master)
 [![Code Climate](https://codeclimate.com/github/tomi77/node-bookshelf-django/badges/gpa.svg)](https://codeclimate.com/github/tomi77/node-bookshelf-django)
 [![dependencies Status](https://david-dm.org/tomi77/node-bookshelf-django/status.svg)](https://david-dm.org/tomi77/node-bookshelf-django)
 [![devDependencies Status](https://david-dm.org/tomi77/node-bookshelf-django/dev-status.svg)](https://david-dm.org/tomi77/node-bookshelf-django?type=dev)
