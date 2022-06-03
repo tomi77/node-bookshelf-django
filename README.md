@@ -266,10 +266,10 @@ In `beforeAll` hook runs knex migrations in order
 All migrations must have own migration table (`tableName` property).
 
 ~~~js
-before(function() {
+before(() => {
   knex.migrate.latest({directory: 'node_modules/bookshelf-django/migrations/', tableName: 'knex_migrations_django'})
-}).then(function() {
-  knex.migrate.latest({directory: 'src/migrations/', tableName: 'knex_migrations_my_project'})
+}).then(() => {
+  knex.migrate.latest({directory: 'migrations/', tableName: 'knex_migrations_my_project'})
 })
 ~~~
 
@@ -279,9 +279,9 @@ In `afterAll` hook runs knex migrations in reverse order
 * Django
 
 ~~~js
-after(function() {
-  knex.migrate.rollback({directory: 'src/migrations/', tableName: 'knex_migrations_my_project'})
-}).then(function() {
+after(() => {
+  knex.migrate.rollback({directory: 'migrations/', tableName: 'knex_migrations_my_project'})
+}).then(() => {
   knex.migrate.rollback({directory: 'node_modules/bookshelf-django/migrations/', tableName: 'knex_migrations_django'})
 })
 ~~~

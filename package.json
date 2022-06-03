@@ -4,9 +4,7 @@
   "description": "Django models for Bookshelf",
   "main": "index.js",
   "scripts": {
-    "prepare": "coffee --bare --compile --output . src/",
-    "lint": "coffeelint src/",
-    "test": "mocha --require coffeescript/register --recursive --exit test/*.coffee"
+    "test": "mocha --recursive --exit test/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,15 +20,16 @@
     "url": "https://github.com/tomi77/node-bookshelf-django/issues"
   },
   "homepage": "https://github.com/tomi77/node-bookshelf-django",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "lodash": "^4.17.4"
+    "bluebird": "^3.7.2",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "chai": "^4.3.0",
-    "coffeelint": "^2.1.0",
-    "coffeescript": "^2.7.0",
-    "mocha": "^9.0.0",
+    "mocha": "^10.0.0",
     "sqlite3": "^5.0.8"
   },
   "peerDependencies": {
