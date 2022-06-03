@@ -1,10 +1,7 @@
 # Django models for Bookshelf
 
-[![Build Status](https://travis-ci.org/tomi77/node-bookshelf-django.svg)](https://travis-ci.org/tomi77/node-bookshelf-django)
-[![Code Climate](https://codeclimate.com/github/tomi77/node-bookshelf-django/badges/gpa.svg)](https://codeclimate.com/github/tomi77/node-bookshelf-django)
-[![dependencies Status](https://david-dm.org/tomi77/node-bookshelf-django/status.svg)](https://david-dm.org/tomi77/node-bookshelf-django)
-[![devDependencies Status](https://david-dm.org/tomi77/node-bookshelf-django/dev-status.svg)](https://david-dm.org/tomi77/node-bookshelf-django?type=dev)
-[![peerDependencies Status](https://david-dm.org/tomi77/node-bookshelf-django/peer-status.svg)](https://david-dm.org/tomi77/node-bookshelf-django?type=peer)
+[![Node.js CI](https://github.com/tomi77/node-bookshelf-django/actions/workflows/node.js.yml/badge.svg)](https://github.com/tomi77/node-bookshelf-django/actions/workflows/node.js.yml)
+[![CodeQL](https://github.com/tomi77/node-bookshelf-django/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/tomi77/node-bookshelf-django/actions/workflows/codeql-analysis.yml)
 ![Downloads](https://img.shields.io/npm/dt/bookshelf-django.svg)
 
 ## Table of contents
