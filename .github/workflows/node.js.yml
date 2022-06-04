@@ -23,5 +23,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm install bookshelf@1.2.0 knex@2.1.0 --no-audit --no-fund --no-save
+    - run: npm install bookshelf@1.2.0 knex@">=0.15.0 <0.22.0" --no-audit --no-fund --no-save
     - run: npm test
