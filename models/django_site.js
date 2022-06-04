@@ -1,6 +1,4 @@
 module.exports = function(bookshelf) {
-  bookshelf.plugin('registry');
-
   if (bookshelf.model('Django.Site') == null) {
     bookshelf.model('Django.Site', {
       tableName: 'django_site',

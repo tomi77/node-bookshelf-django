@@ -1,6 +1,4 @@
 module.exports = function(bookshelf) {
-  bookshelf.plugin('registry');
-
   if (bookshelf.model('Django.ContentType') == null) {
     bookshelf.model('Django.ContentType', {
       tableName: 'django_content_type'

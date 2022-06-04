@@ -1,8 +1,6 @@
 const _ = require('lodash');
 
 module.exports = function(bookshelf) {
-  bookshelf.plugin('registry');
-
   if (bookshelf.model('Django.Auth.Group') == null) {
     require('./auth_permission')(bookshelf);
 

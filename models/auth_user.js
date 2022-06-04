@@ -1,8 +1,6 @@
 const Promise = require('bluebird');
 
 module.exports = function(bookshelf) {
-  bookshelf.plugin('registry');
-
   if (bookshelf.model('Django.Auth.User') == null) {
     require('./auth_permission')(bookshelf);
     require('./auth_group')(bookshelf);
@@ -29,9 +27,9 @@ module.exports = function(bookshelf) {
           return await bookshelf.collection('Django.Auth.Permissions').forge().fetch({withRelated: 'contentType'});
         } else {
           const user = await this.load(['permissions', 'permissions.contentType', 'groups', 'groups.permissions', 'groups.permissions.contentType']);
-          let groups_permissions, permissions;
-          [groups_permissions, permissions] = await Promise.all([user.related('groups').getPermissions(), user.related('permissions')]);
-          return permissions.add(groups_permissions.models);
+          const groups_permissions = await user.related('groups').getPermissions();
+          const permissions = user.related('permissions');
+          return permissions.add(groups_permissions.models, {merge: true});
         }
       }
     });

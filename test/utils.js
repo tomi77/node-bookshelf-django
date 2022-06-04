@@ -1,6 +1,4 @@
-var bookshelf, knex;
-
-knex = require('knex')({
+const knex = require('knex')({
   client: 'sqlite3',
   connection: {
     filename: ':memory:'
@@ -8,7 +6,7 @@ knex = require('knex')({
   useNullAsDefault: true
 });
 
-bookshelf = require('bookshelf')(knex);
+const bookshelf = require('bookshelf')(knex);
 
 module.exports.knex = knex;
 

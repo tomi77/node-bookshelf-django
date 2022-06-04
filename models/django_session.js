@@ -1,6 +1,4 @@
 module.exports = function(bookshelf) {
-  bookshelf.plugin('registry');
-
   if (bookshelf.model('Django.Session') == null) {
     bookshelf.model('Django.Session', {
       tableName: 'django_session',

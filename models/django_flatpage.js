@@ -1,6 +1,4 @@
 module.exports = function(bookshelf) {
-  bookshelf.plugin('registry');
-
   if (bookshelf.model('Django.FlatPage') == null) {
     require('./django_site')(bookshelf);
 

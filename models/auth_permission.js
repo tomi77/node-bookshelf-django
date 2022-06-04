@@ -1,8 +1,6 @@
 const Promise = require('bluebird');
 
 module.exports = function(bookshelf) {
-  bookshelf.plugin('registry');
-
   if (bookshelf.model('Django.Auth.Permission') == null) {
     require('./django_content_type')(bookshelf);
 
